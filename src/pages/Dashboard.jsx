@@ -2,16 +2,8 @@ import React from "react";
 import Navbar from "../components/Navbar";
 
 const Dashboard = () => {
-  const user = {
-    name: "Demo User",
-    balance: 0,
-    totalEmissions: 0,
-    totalReductions: 0,
-    creditsPurchased: 0,
-    creditsShared: 0,
-    recentTransactions: [],
-  };
-
+  const userName = localStorage.getItem("userName") || "Demo User";
+  
   return (
     <div className="min-h-screen bg-green-50">
       <Navbar userName={user.name} />
