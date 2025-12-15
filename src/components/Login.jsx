@@ -10,17 +10,27 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:5000/api/auth/login", {
+      const res = await fetch("http://localhost:5001/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.msg || "Login failed");
-      // save token and name for frontend use
       localStorage.setItem("token", data.token);
-      localStorage.setItem("userName", data.name);
-      navigate("/dashboard");
+
+localStorage.setItem("user", JSON.stringify({
+  name: data.name,
+  balance: 0,
+  totalEmissions: 0,
+  totalReductions: 0,
+  creditsPurchased: 0,
+  creditsShared: 0,
+  recentTransactions: []
+}));
+
+navigate("/dashboard");
+
     } catch (err) {
       alert(err.message);
     }

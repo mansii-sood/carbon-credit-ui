@@ -5,9 +5,11 @@ const Navbar = ({ userName }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-
-    navigate("/"); 
+  localStorage.removeItem("token");
+  localStorage.removeItem("userName");
+  navigate("/"); // login
   };
+
 
   return (
     <nav className="bg-green-700 text-white px-6 py-4 flex justify-between items-center shadow">
